@@ -1,2 +1,2 @@
 ## loveyadav
-my name is love yadav
+My Name is Love Yadav
