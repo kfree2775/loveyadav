@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Two Lines, Three Stories: Linear Equations Made Easy</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --blue: #2563eb;
+      --blue-light: #dbeafe;
+      --red: #dc2626;
+      --red-light: #fee2e2;
+      --green: #059669;
+      --green-light: #d1fae5;
+      --amber: #d97706;
+      --amber-light: #fef3c7;
+      --purple: #7c3aed;
+      --purple-light: #ede9fe;
+      --border: #e2e8f0;
+      --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    header {
+      background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 55%, #06b6d4 100%);
+      color: #ffffff;
+      padding: 56px 20px 64px;
+      text-align: center;
+      border-bottom-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .badge-top {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+
+    header h1 {
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      font-weight: 800;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    header p {
+      max-width: 720px;
+      margin: 0 auto 22px;
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    .formula-pill {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      background: rgba(15, 23, 42, 0.25);
+      padding: 12px 22px;
+      border-radius: 14px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    section {
+      margin: 48px auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .section-title p {
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* 3 Visual Story Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
+    }
+
+    .story-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .card-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .tag-green { background: var(--green-light); color: var(--green); }
+    .tag-red { background: var(--red-light); color: var(--red); }
+    .tag-purple { background: var(--purple-light); color: var(--purple); }
+
+    .mini-svg {
+      width: 100%;
+      height: 90px;
+      background: #f8fafc;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .story-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+    }
+
+    .analogy {
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .story-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .rule-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--blue);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .rule-box code {
+      display: block;
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    /* Interactive Playground */
+    .playground-wrapper {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .presets-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .preset-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-intersect { background: var(--green-light); color: var(--green); }
+    .btn-intersect:hover { background: #a7f3d0; }
+
+    .btn-parallel { background: var(--red-light); color: var(--red); }
+    .btn-parallel:hover { background: #fecaca; }
+
+    .btn-coincident { background: var(--purple-light); color: var(--purple); }
+    .btn-coincident:hover { background: #ddd6fe; }
+
+    .playground-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .playground-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .line-control-box {
+      padding: 18px;
+      border-radius: 14px;
+      margin-bottom: 18px;
+      border: 2px solid var(--border);
+    }
+
+    .line-1-box {
+      border-color: #93c5fd;
+      background: #eff6ff;
+    }
+
+    .line-2-box {
+      border-color: #fca5a5;
+      background: #fef2f2;
+    }
+
+    .line-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .line-title {
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .line-1-box .line-title { color: var(--blue); }
+    .line-2-box .line-title { color: var(--red); }
+
+    .eq-display {
+      background: #ffffff;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+    }
+
+    .slider-row {
+      display: grid;
+      grid-template-columns: 42px 1fr 56px;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .slider-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .slider-row label {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .slider-row input[type="range"] {
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .slider-row input[type="number"] {
+      width: 100%;
+      padding: 5px 6px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-weight: 700;
+      text-align: center;
+      background: #fff;
+    }
+
+    /* Canvas & Status Dashboard */
+    .canvas-container {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-height: 440px;
+      margin: 0 auto 18px;
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .status-panel {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .status-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .status-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .ratios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .ratio-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .ratio-card span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .ratio-card strong {
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .solution-info {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+    }
+
+    /* Quiz Section */
+    .quiz-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .quiz-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .quiz-equations {
+      background: #f1f5f9;
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .quiz-question-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 14px 18px;
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--blue);
+      background: #eff6ff;
+    }
+
+    .option-btn.correct {
+      border-color: var(--green);
+      background: var(--green-light);
+      color: #065f46;
+    }
+
+    .option-btn.wrong {
+      border-color: var(--red);
+      background: var(--red-light);
+      color: #991b1b;
+    }
+
+    .quiz-feedback {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      display: none;
+    }
+
+    .quiz-actions {
+      margin-top: 18px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 20px 48px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. HERO SECTION -->
+  <header>
+    <div class="container">
+      <div class="badge-top">Class 10 Maths • Interactive Visual Guide</div>
+      <h1>Two Lines, Three Stories: Linear Equations Made Easy</h1>
+      <p>
+        A pair of linear equations in two variables is just <strong>two straight lines</strong> drawn on the same graph. Watch what happens when they meet, race side-by-side, or overlap completely!
+      </p>
+      <div class="formula-pill">
+        <span>Line 1: a₁x + b₁y + c₁ = 0</span>
+        <span>•</span>
+        <span>Line 2: a₂x + b₂y + c₂ = 0</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 2. THE 3 VISUAL CASES -->
+    <section>
+      <div class="section-title">
+        <h2>The 3 Possible Stories of Two Lines</h2>
+        <p>Compare the coefficients (a, b, c) to predict how the lines behave without even drawing them.</p>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Case 1: Intersecting -->
+        <div class="story-card">
+          <div>
+            <div class="card-header">
+              <span class="card-tag tag-green">Consistent • 1 Solution</span>
+              <strong>Case 1</strong>
+            </div>
+            <svg class="mini-svg" viewBox="0 0 240 90">
+              <line x1="30" y1="75" x2="210" y2="15" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+              <line x1="30" y1="15" x2="210" y2="75" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="120" cy="45" r="6" fill="#059669"/>
+            </svg>
+            <h3>1. Intersecting Lines</h3>
+            <div class="analogy">Analogy: Two Crossroads Meeting</div>
+            <p>The two lines have different slopes, so they cross each other at <strong>exactly one point</strong>. Because at least one solution exists, the pair is <strong>Consistent</strong>.</p>
+          </div>
+          <div class="rule-box">
+            <code>a₁/a₂ ≠ b₁/b₂</code>
+            <span>Unique Solution (1 crossing point)</span>
+          </div>
+        </div>
+
+        <!-- Case 2: Parallel -->
+        <div class="story-card">
+          <div>
+            <div class="card-header">
+              <span class="card-tag tag-red">Inconsistent • 0 Solutions</span>
+              <strong>Case 2</strong>
+            </div>
+            <svg class="mini-svg" viewBox="0 0 240 90">
+              <line x1="30" y1="62" x2="210" y2="20" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+              <line x1="30" y1="80" x2="210" y2="38" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <h3>2. Parallel Lines</h3>
+            <div class="analogy">Analogy: Straight Train Tracks</div>
+            <p>Both lines tilt at the exact same angle, staying the same distance apart forever. They never meet, so there is <strong>no solution</strong> (<strong>Inconsistent</strong>).</p>
+          </div>
+          <div class="rule-box">
+            <code>a₁/a₂ = b₁/b₂ ≠ c₁/c₂</code>
+            <span>No Solution (Never touch)</span>
+          </div>
+        </div>
+
+        <!-- Case 3: Coincident -->
+        <div class="story-card">
+          <div>
+            <div class="card-header">
+              <span class="card-tag tag-purple">Consistent • ∞ Solutions</span>
+              <strong>Case 3</strong>
+            </div>
+            <svg class="mini-svg" viewBox="0 0 240 90">
+              <line x1="30" y1="70" x2="210" y2="20" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+              <line x1="30" y1="70" x2="210" y2="20" stroke="#dc2626" stroke-width="3" stroke-dasharray="8 6" stroke-linecap="round"/>
+            </svg>
+            <h3>3. Coincident Lines</h3>
+            <div class="analogy">Analogy: Two Cars on the Same Road</div>
+            <p>One equation is just a scaled-up copy of the other. Every point on Line 1 is also on Line 2—giving <strong>infinitely many solutions</strong> (<strong>Consistent &amp; Dependent</strong>).</p>
+          </div>
+          <div class="rule-box">
+            <code>a₁/a₂ = b₁/b₂ = c₁/c₂</code>
+            <span>Infinitely Many Solutions</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. INTERACTIVE GRAPH PLAYGROUND -->
+    <section>
+      <div class="section-title">
+        <h2>Interactive Graph Playground</h2>
+        <p>Move the sliders or click a preset below to watch the lines and ratios update live.</p>
+      </div>
+
+      <div class="playground-wrapper">
+        <div class="presets-bar">
+          <strong>Quick Test Presets:</strong>
+          <div class="preset-buttons">
+            <button class="btn btn-intersect" onclick="applyPreset('intersect')">Try Intersecting</button>
+            <button class="btn btn-parallel" onclick="applyPreset('parallel')">Try Parallel</button>
+            <button class="btn btn-coincident" onclick="applyPreset('coincident')">Try Coincident</button>
+          </div>
+        </div>
+
+        <div class="playground-grid">
+          <!-- Controls Column -->
+          <div>
+            <!-- Line 1 -->
+            <div class="line-control-box line-1-box">
+              <div class="line-header">
+                <span class="line-title">Line 1 (Blue)</span>
+                <span class="eq-display" id="eq1-text">x + y - 4 = 0</span>
+              </div>
+              <div class="slider-row">
+                <label for="a1">a₁</label>
+                <input type="range" id="a1" min="-10" max="10" step="1" value="1" />
+                <input type="number" id="a1-num" min="-10" max="10" step="1" value="1" />
+              </div>
+              <div class="slider-row">
+                <label for="b1">b₁</label>
+                <input type="range" id="b1" min="-10" max="10" step="1" value="1" />
+                <input type="number" id="b1-num" min="-10" max="10" step="1" value="1" />
+              </div>
+              <div class="slider-row">
+                <label for="c1">c₁</label>
+                <input type="range" id="c1" min="-15" max="15" step="1" value="-4" />
+                <input type="number" id="c1-num" min="-15" max="15" step="1" value="-4" />
+              </div>
+            </div>
+
+            <!-- Line 2 -->
+            <div class="line-control-box line-2-box">
+              <div class="line-header">
+                <span class="line-title">Line 2 (Red)</span>
+                <span class="eq-display" id="eq2-text">2x - y - 2 = 0</span>
+              </div>
+              <div class="slider-row">
+                <label for="a2">a₂</label>
+                <input type="range" id="a2" min="-10" max="10" step="1" value="2" />
+                <input type="number" id="a2-num" min="-10" max="10" step="1" value="2" />
+              </div>
+              <div class="slider-row">
+                <label for="b2">b₂</label>
+                <input type="range" id="b2" min="-10" max="10" step="1" value="-1" />
+                <input type="number" id="b2-num" min="-10" max="10" step="1" value="-1" />
+              </div>
+              <div class="slider-row">
+                <label for="c2">c₂</label>
+                <input type="range" id="c2" min="-15" max="15" step="1" value="-2" />
+                <input type="number" id="c2-num" min="-15" max="15" step="1" value="-2" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Graph + Live Status Column -->
+          <div>
+            <div class="canvas-container">
+              <canvas id="graphCanvas"></canvas>
+            </div>
+
+            <div class="status-panel">
+              <div class="status-top">
+                <span class="status-pill tag-green" id="line-type-badge">Intersecting Lines</span>
+                <span class="status-pill tag-green" id="system-type-badge">Consistent (Unique Solution)</span>
+              </div>
+
+              <div class="ratios-grid">
+                <div class="ratio-card">
+                  <span>a₁ / a₂</span>
+                  <strong id="ratio-a">1/2</strong>
+                </div>
+                <div class="ratio-card">
+                  <span>b₁ / b₂</span>
+                  <strong id="ratio-b">-1/1</strong>
+                </div>
+                <div class="ratio-card">
+                  <span>c₁ / c₂</span>
+                  <strong id="ratio-c">2/1</strong>
+                </div>
+              </div>
+
+              <div class="solution-info" id="solution-details">
+                <strong>Intersection Point:</strong> (x, y) = (2, 2)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. QUICK 5-QUESTION QUIZ -->
+    <section>
+      <div class="section-title">
+        <h2>Quick 5-Question Challenge</h2>
+        <p>Test your ratio skills! Look at the two equations and pick the right match.</p>
+      </div>
+
+      <div class="quiz-card" id="quiz-box">
+        <div class="quiz-top">
+          <span id="quiz-progress">Question 1 of 5</span>
+          <span id="quiz-score">Score: 0 / 5</span>
+        </div>
+
+        <div class="quiz-equations" id="quiz-eqs">
+          2x + 3y - 8 = 0<br />
+          4x + 6y - 16 = 0
+        </div>
+
+        <div class="quiz-question-text" id="quiz-prompt">
+          What kind of lines do these two equations form?
+        </div>
+
+        <div class="options-list" id="quiz-options"></div>
+
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+
+        <div class="quiz-actions">
+          <button class="btn btn-primary" id="next-btn" style="display:none;" onclick="nextQuestion()">Next Question →</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Built for Class 10 Students • Ready for GitHub Pages
+  </footer>
+
+  <script>
+    /* =========================================
+       1. SLIDER & INPUT SYNCHRONIZATION
+       ========================================= */
+    const ids = ['a1', 'b1', 'c1', 'a2', 'b2', 'c2'];
+
+    ids.forEach(id => {
+      const range = document.getElementById(id);
+      const num = document.getElementById(id + '-num');
+
+      range.addEventListener('input', () => {
+        num.value = range.value;
+        updateAll();
+      });
+
+      num.addEventListener('input', () => {
+        let val = parseFloat(num.value);
+        if (isNaN(val)) val = 0;
+        range.value = Math.max(parseFloat(range.min), Math.min(parseFloat(range.max), val));
+        updateAll();
+      });
+    });
+
+    function setValues(vals) {
+      ids.forEach(id => {
+        document.getElementById(id).value = vals[id];
+        document.getElementById(id + '-num').value = vals[id];
+      });
+      updateAll();
+    }
+
+    function applyPreset(type) {
+      if (type === 'intersect') {
+        setValues({ a1: 1, b1: 1, c1: -4, a2: 2, b2: -1, c2: -2 });
+      } else if (type === 'parallel') {
+        setValues({ a1: 1, b1: 2, c1: -4, a2: 2, b2: 4, c2: -12 });
+      } else if (type === 'coincident') {
+        setValues({ a1: 2, b1: 3, c1: -6, a2: 4, b2: 6, c2: -12 });
+      }
+    }
+
+    /* =========================================
+       2. MATH HELPERS & EQUATION FORMATTING
+       ========================================= */
+    function gcd(a, b) {
+      a = Math.abs(Math.round(a));
+      b = Math.abs(Math.round(b));
+      while (b !== 0) {
+        let t = b;
+        b = a % b;
+        a = t;
+      }
+      return a || 1;
+    }
+
+    function formatRatio(num, den) {
+      if (den === 0 && num === 0) return '0/0';
+      if (den === 0) return 'Undefined';
+      if (num === 0) return '0';
+      if (Number.isInteger(num) && Number.isInteger(den)) {
+        const sign = (num < 0) ^ (den < 0) ? -1 : 1;
+        const g = gcd(num, den);
+        const sNum = sign * (Math.abs(num) / g);
+        const sDen = Math.abs(den) / g;
+        return sDen === 1 ? `${sNum}` : `${sNum}/${sDen}`;
+      }
+      return (num / den).toFixed(2);
+    }
+
+    function formatEquation(a, b, c) {
+      let parts = [];
+      if (a !== 0) {
+        parts.push(a === 1 ? 'x' : a === -1 ? '-x' : `${a}x`);
+      }
+      if (b !== 0) {
+        const sign = b > 0 ? (parts.length ? ' + ' : '') : (parts.length ? ' - ' : '-');
+        const absB = Math.abs(b);
+        parts.push(sign + (absB === 1 ? 'y' : `${absB}y`));
+      }
+      if (c !== 0) {
+        const sign = c > 0 ? (parts.length ? ' + ' : '') : (parts.length ? ' - ' : '-');
+        parts.push(sign + Math.abs(c));
+      }
+      if (parts.length === 0) return '0 = 0';
+      return parts.join('') + ' = 0';
+    }
+
+    function cleanNum(n) {
+      const rounded = Math.round(n * 100) / 100;
+      return Object.is(rounded, -0) ? 0 : rounded;
+    }
+
+    /* =========================================
+       3. LIVE GRAPH RENDERING & RATIO ANALYSIS
+       ========================================= */
+    const canvas = document.getElementById('graphCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function updateAll() {
+      const a1 = parseFloat(document.getElementById('a1-num').value) || 0;
+      const b1 = parseFloat(document.getElementById('b1-num').value) || 0;
+      const c1 = parseFloat(document.getElementById('c1-num').value) || 0;
+      const a2 = parseFloat(document.getElementById('a2-num').value) || 0;
+      const b2 = parseFloat(document.getElementById('b2-num').value) || 0;
+      const c2 = parseFloat(document.getElementById('c2-num').value) || 0;
+
+      document.getElementById('eq1-text').textContent = formatEquation(a1, b1, c1);
+      document.getElementById('eq2-text').textContent = formatEquation(a2, b2, c2);
+
+      document.getElementById('ratio-a').textContent = formatRatio(a1, a2);
+      document.getElementById('ratio-b').textContent = formatRatio(b1, b2);
+      document.getElementById('ratio-c').textContent = formatRatio(c1, c2);
+
+      const lineBadge = document.getElementById('line-type-badge');
+      const sysBadge = document.getElementById('system-type-badge');
+      const solDetails = document.getElementById('solution-details');
+
+      const line1Valid = !(a1 === 0 && b1 === 0);
+      const line2Valid = !(a2 === 0 && b2 === 0);
+
+      let status = 'invalid';
+      let intersectPt = null;
+
+      if (!line1Valid || !line2Valid) {
+        lineBadge.textContent = 'Invalid Equation';
+        lineBadge.className = 'status-pill tag-red';
+        sysBadge.textContent = 'a and b cannot both be 0';
+        sysBadge.className = 'status-pill tag-red';
+        solDetails.innerHTML = '<strong>Tip:</strong> Set at least one of <em>a</em> or <em>b</em> to a non-zero number to form a line.';
+      } else {
+        const D = a1 * b2 - a2 * b1;
+        const Dx = b1 * c2 - b2 * c1;
+        const Dy = c1 * a2 - c2 * a1;
+
+        if (Math.abs(D) > 1e-9) {
+          status = 'intersect';
+          const x = Dx / D;
+          const y = Dy / D;
+          intersectPt = { x, y };
+
+          lineBadge.textContent = 'Intersecting Lines (a₁/a₂ ≠ b₁/b₂)';
+          lineBadge.className = 'status-pill tag-green';
+          sysBadge.textContent = 'Consistent • Unique Solution';
+          sysBadge.className = 'status-pill tag-green';
+          solDetails.innerHTML = `<strong>Exact Crossing Point:</strong> (x, y) = <strong>(${cleanNum(x)}, ${cleanNum(y)})</strong>`;
+        } else if (Math.abs(Dx) <= 1e-9 && Math.abs(Dy) <= 1e-9) {
+          status = 'coincident';
+          lineBadge.textContent = 'Coincident Lines (a₁/a₂ = b₁/b₂ = c₁/c₂)';
+          lineBadge.className = 'status-pill tag-purple';
+          sysBadge.textContent = 'Consistent • Infinitely Many Solutions';
+          sysBadge.className = 'status-pill tag-purple';
+          solDetails.innerHTML = '<strong>Overlap:</strong> Both equations represent the exact same line—every point on the line is a solution.';
+        } else {
+          status = 'parallel';
+          lineBadge.textContent = 'Parallel Lines (a₁/a₂ = b₁/b₂ ≠ c₁/c₂)';
+          lineBadge.className = 'status-pill tag-red';
+          sysBadge.textContent = 'Inconsistent • No Solution';
+          sysBadge.className = 'status-pill tag-red';
+          solDetails.innerHTML = '<strong>No Crossing:</strong> Both lines have the same slope and never meet.';
+        }
+      }
+
+      drawGraph(a1, b1, c1, a2, b2, c2, status, intersectPt);
+    }
+
+    function drawGraph(a1, b1, c1, a2, b2, c2, status, intersectPt) {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const width = rect.width;
+      const height = rect.height;
+      const range = 10; // -10 to +10 on both axes
+      const stepX = width / (range * 2);
+      const stepY = height / (range * 2);
+      const originX = width / 2;
+      const originY = height / 2;
+
+      const toPxX = x => originX + x * stepX;
+      const toPxY = y => originY - y * stepY;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Grid lines
+      ctx.lineWidth = 1;
+      for (let i = -range; i <= range; i++) {
+        ctx.strokeStyle = i === 0 ? '#64748b' : '#e2e8f0';
+        ctx.lineWidth = i === 0 ? 2 : 1;
+
+        // Vertical grid line
+        ctx.beginPath();
+        ctx.moveTo(toPxX(i), 0);
+        ctx.lineTo(toPxX(i), height);
+        ctx.stroke();
+
+        // Horizontal grid line
+        ctx.beginPath();
+        ctx.moveTo(0, toPxY(i));
+        ctx.lineTo(width, toPxY(i));
+        ctx.stroke();
+
+        // Axis numbers (every 2 units)
+        if (i !== 0 && i % 2 === 0) {
+          ctx.fillStyle = '#64748b';
+          ctx.font = '11px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(i, toPxX(i), originY + 14);
+          ctx.textAlign = 'right';
+          ctx.fillText(i, originX - 6, toPxY(i) + 4);
+        }
+      }
+
+      // Axis labels
+      ctx.fillStyle = '#334155';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('X', width - 12, originY - 8);
+      ctx.fillText('Y', originX + 14, 14);
+
+      function plotLine(a, b, c, color, dashed) {
+        if (a === 0 && b === 0) return;
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = dashed ? 3.5 : 4;
+        if (dashed) ctx.setLineDash([10, 8]);
+
+        ctx.beginPath();
+        if (Math.abs(b) > 1e-9) {
+          const yStart = (-a * (-range) - c) / b;
+          const yEnd = (-a * range - c) / b;
+          ctx.moveTo(toPxX(-range), toPxY(yStart));
+          ctx.lineTo(toPxX(range), toPxY(yEnd));
+        } else {
+          const xConst = -c / a;
+          ctx.moveTo(toPxX(xConst), toPxY(-range));
+          ctx.lineTo(toPxX(xConst), toPxY(range));
+        }
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // Plot Line 1 (Blue) and Line 2 (Red; dashed if coincident so both are visible)
+      plotLine(a1, b1, c1, '#2563eb', false);
+      plotLine(a2, b2, c2, '#dc2626', status === 'coincident');
+
+      // Plot Intersection Dot if inside visible grid
+      if (status === 'intersect' && intersectPt) {
+        const px = toPxX(intersectPt.x);
+        const py = toPxY(intersectPt.y);
+
+        if (px >= -20 && px <= width + 20 && py >= -20 && py <= height + 20) {
+          ctx.beginPath();
+          ctx.arc(px, py, 7, 0, Math.PI * 2);
+          ctx.fillStyle = '#059669';
+          ctx.fill();
+          ctx.lineWidth = 2.5;
+          ctx.strokeStyle = '#ffffff';
+          ctx.stroke();
+
+          const label = `(${cleanNum(intersectPt.x)}, ${cleanNum(intersectPt.y)})`;
+          ctx.font = 'bold 12px sans-serif';
+          const textW = ctx.measureText(label).width;
+          const boxX = Math.min(Math.max(px + 10, 8), width - textW - 16);
+          const boxY = Math.max(py - 26, 8);
+
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+          ctx.beginPath();
+          ctx.roundRect(boxX, boxY, textW + 12, 22, 6);
+          ctx.fill();
+
+          ctx.fillStyle = '#ffffff';
+          ctx.textAlign = 'left';
+          ctx.fillText(label, boxX + 6, boxY + 15);
+        }
+      }
+    }
+
+    window.addEventListener('resize', updateAll);
+
+    /* =========================================
+       4. 5-QUESTION INTERACTIVE QUIZ
+       ========================================= */
+    const quizData = [
+      {
+        eqs: "2x + 3y - 8 = 0<br>4x + 6y - 16 = 0",
+        options: [
+          "Coincident & Consistent (Infinitely many solutions)",
+          "Parallel & Inconsistent (No solution)",
+          "Intersecting & Consistent (Unique solution)"
+        ],
+        answer: 0,
+        explanation: "Here a₁/a₂ = 2/4 = 1/2, b₁/b₂ = 3/6 = 1/2, and c₁/c₂ = -8/-16 = 1/2. All three ratios are equal, so the lines overlap completely!"
+      },
+      {
+        eqs: "x + 2y - 4 = 0<br>2x + 4y - 12 = 0",
+        options: [
+          "Intersecting & Consistent (Unique solution)",
+          "Parallel & Inconsistent (No solution)",
+          "Coincident & Consistent (Infinitely many solutions)"
+        ],
+        answer: 1,
+        explanation: "a₁/a₂ = 1/2 and b₁/b₂ = 2/4 = 1/2, but c₁/c₂ = -4/-12 = 1/3. Since a₁/a₂ = b₁/b₂ ≠ c₁/c₂, the lines are parallel and never meet."
+      },
+      {
+        eqs: "5x - 4y + 8 = 0<br>7x + 6y - 9 = 0",
+        options: [
+          "Parallel & Inconsistent (No solution)",
+          "Coincident & Consistent (Infinitely many solutions)",
+          "Intersecting & Consistent (Unique solution)"
+        ],
+        answer: 2,
+        explanation: "a₁/a₂ = 5/7 while b₁/b₂ = -4/6 = -2/3. Because a₁/a₂ ≠ b₁/b₂, the lines cross at one exact point."
+      },
+      {
+        eqs: "3x + 2y = 5<br>2x - 3y = 7",
+        options: [
+          "Consistent (Lines intersect at 1 point)",
+          "Inconsistent (Lines are parallel)",
+          "Dependent & Coincident"
+        ],
+        answer: 0,
+        explanation: "a₁/a₂ = 3/2 and b₁/b₂ = -2/3. Since the ratios are unequal, they intersect at a single point, making the system Consistent."
+      },
+      {
+        eqs: "6x - 3y + 10 = 0<br>2x - y + 9 = 0",
+        options: [
+          "Intersecting & Consistent",
+          "Parallel & Inconsistent",
+          "Coincident & Consistent"
+        ],
+        answer: 1,
+        explanation: "a₁/a₂ = 6/2 = 3 and b₁/b₂ = -3/-1 = 3, but c₁/c₂ = 10/9. Equal slopes with different intercepts mean Parallel & Inconsistent!"
+      }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+    let answered = false;
+
+    function loadQuestion() {
+      answered = false;
+      const q = quizData[currentQ];
+      document.getElementById('quiz-progress').textContent = `Question ${currentQ + 1} of ${quizData.length}`;
+      document.getElementById('quiz-score').textContent = `Score: ${score} / ${quizData.length}`;
+      document.getElementById('quiz-eqs').innerHTML = q.eqs;
+      document.getElementById('quiz-prompt').textContent = "Identify the line behavior and consistency:";
+
+      const optionsContainer = document.getElementById('quiz-options');
+      optionsContainer.innerHTML = '';
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        btn.onclick = () => selectAnswer(idx, btn);
+        optionsContainer.appendChild(btn);
+      });
+
+      const feedback = document.getElementById('quiz-feedback');
+      feedback.style.display = 'none';
+      document.getElementById('next-btn').style.display = 'none';
+    }
+
+    function selectAnswer(selectedIdx, clickedBtn) {
+      if (answered) return;
+      answered = true;
+
+      const q = quizData[currentQ];
+      const buttons = document.querySelectorAll('.option-btn');
+      buttons.forEach(b => (b.disabled = true));
+
+      const feedback = document.getElementById('quiz-feedback');
+      feedback.style.display = 'block';
+
+      if (selectedIdx === q.answer) {
+        score++;
+        clickedBtn.classList.add('correct');
+        feedback.style.background = '#d1fae5';
+        feedback.style.color = '#065f46';
+        feedback.innerHTML = `✅ Spot on! ${q.explanation}`;
+      } else {
+        clickedBtn.classList.add('wrong');
+        buttons[q.answer].classList.add('correct');
+        feedback.style.background = '#fee2e2';
+        feedback.style.color = '#991b1b';
+        feedback.innerHTML = `❌ Not quite. ${q.explanation}`;
+      }
+
+      document.getElementById('quiz-score').textContent = `Score: ${score} / ${quizData.length}`;
+      const nextBtn = document.getElementById('next-btn');
+      nextBtn.style.display = 'inline-block';
+      nextBtn.textContent = currentQ === quizData.length - 1 ? 'See Final Score' : 'Next Question →';
+    }
+
+    function nextQuestion() {
+      currentQ++;
+      if (currentQ < quizData.length) {
+        loadQuestion();
+      } else {
+        showFinalResults();
+      }
+    }
+
+    function showFinalResults() {
+      const box = document.getElementById('quiz-box');
+      let message = score === 5
+        ? "Perfect score! You've mastered Consistent and Inconsistent linear equations."
+        : score >= 3
+        ? "Great job! Try experimenting with the graph playground above to lock in the ratio rules."
+        : "Good try! Use the 3 preset buttons in the playground above to see how each ratio works, then try again.";
+
+      box.innerHTML = `
+        <div style="text-align:center; padding: 16px 0;">
+          <h3 style="font-size: 1.6rem; margin-bottom: 10px;">Quiz Complete!</h3>
+          <p style="font-size: 1.3rem; font-weight: 800; color: #2563eb; margin-bottom: 12px;">
+            Your Score: ${score} out of ${quizData.length}
+          </p>
+          <p style="color: #64748b; max-width: 500px; margin: 0 auto 24px;">${message}</p>
+          <button class="btn btn-primary" onclick="restartQuiz()">Play Quiz Again</button>
+        </div>
+      `;
+    }
+
+    function restartQuiz() {
+      currentQ = 0;
+      score = 0;
+      const box = document.getElementById('quiz-box');
+      box.innerHTML = `
+        <div class="quiz-top">
+          <span id="quiz-progress"></span>
+          <span id="quiz-score"></span>
+        </div>
+        <div class="quiz-equations" id="quiz-eqs"></div>
+        <div class="quiz-question-text" id="quiz-prompt"></div>
+        <div class="options-list" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-primary" id="next-btn" style="display:none;" onclick="nextQuestion()">Next Question →</button>
+        </div>
+      `;
+      loadQuestion();
+    }
+
+    // Initialize playground and quiz on load
+    updateAll();
+    loadQuestion();
+  </script>
+</body>
+</html>
