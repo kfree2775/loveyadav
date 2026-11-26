@@ -1,6 +1,20 @@
-## Love Yadav
-My Name is Love Yadav And I am currently a third-year student of the integrated B.Sc.–B.Ed. programme at the Indian Institute of Technology Ropar, belonging to the 2028 batch.
-Growing up in a middle-class family taught me to work hard, never give up, stay disciplined, and make the most of every opportunity. These habits helped me succeed in school, allowing me to become the District Topper in Class 10.
-As a mathematics and education student, I have a strong passion for math, creative teaching methods, and educational technology. My goal is to make math engaging, easy to understand, and meaningful for all students. Throughout my studies, I have focused on student-centered teaching, building strong foundational concepts, and using technology effectively in the classroom.
-Beyond my studies, playing for the IIT Ropar Volleyball Team has taught me invaluable lessons in teamwork, leadership, and mental resilience. I plan to bring this same energy and teamwork into the professional world. I have a strong interest in entrepreneurship and want to create new solutions in the education sector. My ultimate dream is to make high-quality learning accessible to students from small towns and financially constrained backgrounds, ensuring that every student gets the same chance to succeed that I had.
-Looking to the future, my dream is to reshape the way students learn. I plan to merge technology with education and mathematics to build tools that truly matter. In the long run, I want to be a driving force in creating a world where every student has the resources and opportunities they need to thrive.
+# Two Lines, Three Stories: Linear Equations Made Easy
+
+An interactive Class 10 Mathematics web application that teaches **Pair of Linear Equations in Two Variables** (Intersecting, Parallel, Coincident, Consistent, and Inconsistent systems) visually.
+
+## Folder Structure
+
+```text
+linear-equations-website/
+├── index.html   # Main webpage structure and sections
+├── style.css    # Responsive layout, cards, and UI styling
+├── script.js    # Interactive HTML5 Canvas graph, ratio logic, and quiz
+└── README.md    # Project overview and GitHub Pages guide
+```
+
+## How to Host on GitHub Pages
+
+1. Extract this ZIP folder.
+2. Create a new public repository on GitHub.
+3. Upload `index.html`, `style.css`, `script.js`, and `README.md` into the root of the repository.
+4. Go to **Settings → Pages**, select the `main` branch and `/ (root)` folder, and click **Save**.

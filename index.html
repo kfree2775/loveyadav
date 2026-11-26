@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Two Lines, Three Stories: Linear Equations Made Easy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 1. HERO SECTION -->
+  <header>
+    <div class="container">
+      <div class="badge-top">Class 10 Maths • Interactive Visual Guide</div>
+      <h1>Two Lines, Three Stories: Linear Equations Made Easy</h1>
+      <p>
+        A pair of linear equations in two variables is just <strong>two straight lines</strong> drawn on the same graph. Watch what happens when they meet, race side-by-side, or overlap completely!
+      </p>
+      <div class="formula-pill">
+        <span>Line 1: a₁x + b₁y + c₁ = 0</span>
+        <span>•</span>
+        <span>Line 2: a₂x + b₂y + c₂ = 0</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 2. THE 3 VISUAL CASES -->
+    <section>
+      <div class="section-title">
+        <h2>The 3 Possible Stories of Two Lines</h2>
+        <p>Compare the coefficients (a, b, c) to predict how the lines behave without even drawing them.</p>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Case 1: Intersecting -->
+        <div class="story-card">
+          <div>
+            <div class="card-header">
+              <span class="card-tag tag-green">Consistent • 1 Solution</span>
+              <strong>Case 1</strong>
+            </div>
+            <svg class="mini-svg" viewBox="0 0 240 90">
+              <line x1="30" y1="75" x2="210" y2="15" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+              <line x1="30" y1="15" x2="210" y2="75" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="120" cy="45" r="6" fill="#059669"/>
+            </svg>
+            <h3>1. Intersecting Lines</h3>
+            <div class="analogy">Analogy: Two Crossroads Meeting</div>
+            <p>The two lines have different slopes, so they cross each other at <strong>exactly one point</strong>. Because at least one solution exists, the pair is <strong>Consistent</strong>.</p>
+          </div>
+          <div class="rule-box">
+            <code>a₁/a₂ ≠ b₁/b₂</code>
+            <span>Unique Solution (1 crossing point)</span>
+          </div>
+        </div>
+
+        <!-- Case 2: Parallel -->
+        <div class="story-card">
+          <div>
+            <div class="card-header">
+              <span class="card-tag tag-red">Inconsistent • 0 Solutions</span>
+              <strong>Case 2</strong>
+            </div>
+            <svg class="mini-svg" viewBox="0 0 240 90">
+              <line x1="30" y1="62" x2="210" y2="20" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+              <line x1="30" y1="80" x2="210" y2="38" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <h3>2. Parallel Lines</h3>
+            <div class="analogy">Analogy: Straight Train Tracks</div>
+            <p>Both lines tilt at the exact same angle, staying the same distance apart forever. They never meet, so there is <strong>no solution</strong> (<strong>Inconsistent</strong>).</p>
+          </div>
+          <div class="rule-box">
+            <code>a₁/a₂ = b₁/b₂ ≠ c₁/c₂</code>
+            <span>No Solution (Never touch)</span>
+          </div>
+        </div>
+
+        <!-- Case 3: Coincident -->
+        <div class="story-card">
+          <div>
+            <div class="card-header">
+              <span class="card-tag tag-purple">Consistent • ∞ Solutions</span>
+              <strong>Case 3</strong>
+            </div>
+            <svg class="mini-svg" viewBox="0 0 240 90">
+              <line x1="30" y1="70" x2="210" y2="20" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+              <line x1="30" y1="70" x2="210" y2="20" stroke="#dc2626" stroke-width="3" stroke-dasharray="8 6" stroke-linecap="round"/>
+            </svg>
+            <h3>3. Coincident Lines</h3>
+            <div class="analogy">Analogy: Two Cars on the Same Road</div>
+            <p>One equation is just a scaled-up copy of the other. Every point on Line 1 is also on Line 2—giving <strong>infinitely many solutions</strong> (<strong>Consistent &amp; Dependent</strong>).</p>
+          </div>
+          <div class="rule-box">
+            <code>a₁/a₂ = b₁/b₂ = c₁/c₂</code>
+            <span>Infinitely Many Solutions</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. INTERACTIVE GRAPH PLAYGROUND -->
+    <section>
+      <div class="section-title">
+        <h2>Interactive Graph Playground</h2>
+        <p>Move the sliders or click a preset below to watch the lines and ratios update live.</p>
+      </div>
+
+      <div class="playground-wrapper">
+        <div class="presets-bar">
+          <strong>Quick Test Presets:</strong>
+          <div class="preset-buttons">
+            <button class="btn btn-intersect" onclick="applyPreset('intersect')">Try Intersecting</button>
+            <button class="btn btn-parallel" onclick="applyPreset('parallel')">Try Parallel</button>
+            <button class="btn btn-coincident" onclick="applyPreset('coincident')">Try Coincident</button>
+          </div>
+        </div>
+
+        <div class="playground-grid">
+          <!-- Controls Column -->
+          <div>
+            <!-- Line 1 -->
+            <div class="line-control-box line-1-box">
+              <div class="line-header">
+                <span class="line-title">Line 1 (Blue)</span>
+                <span class="eq-display" id="eq1-text">x + y - 4 = 0</span>
+              </div>
+              <div class="slider-row">
+                <label for="a1">a₁</label>
+                <input type="range" id="a1" min="-10" max="10" step="1" value="1" />
+                <input type="number" id="a1-num" min="-10" max="10" step="1" value="1" />
+              </div>
+              <div class="slider-row">
+                <label for="b1">b₁</label>
+                <input type="range" id="b1" min="-10" max="10" step="1" value="1" />
+                <input type="number" id="b1-num" min="-10" max="10" step="1" value="1" />
+              </div>
+              <div class="slider-row">
+                <label for="c1">c₁</label>
+                <input type="range" id="c1" min="-15" max="15" step="1" value="-4" />
+                <input type="number" id="c1-num" min="-15" max="15" step="1" value="-4" />
+              </div>
+            </div>
+
+            <!-- Line 2 -->
+            <div class="line-control-box line-2-box">
+              <div class="line-header">
+                <span class="line-title">Line 2 (Red)</span>
+                <span class="eq-display" id="eq2-text">2x - y - 2 = 0</span>
+              </div>
+              <div class="slider-row">
+                <label for="a2">a₂</label>
+                <input type="range" id="a2" min="-10" max="10" step="1" value="2" />
+                <input type="number" id="a2-num" min="-10" max="10" step="1" value="2" />
+              </div>
+              <div class="slider-row">
+                <label for="b2">b₂</label>
+                <input type="range" id="b2" min="-10" max="10" step="1" value="-1" />
+                <input type="number" id="b2-num" min="-10" max="10" step="1" value="-1" />
+              </div>
+              <div class="slider-row">
+                <label for="c2">c₂</label>
+                <input type="range" id="c2" min="-15" max="15" step="1" value="-2" />
+                <input type="number" id="c2-num" min="-15" max="15" step="1" value="-2" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Graph + Live Status Column -->
+          <div>
+            <div class="canvas-container">
+              <canvas id="graphCanvas"></canvas>
+            </div>
+
+            <div class="status-panel">
+              <div class="status-top">
+                <span class="status-pill tag-green" id="line-type-badge">Intersecting Lines</span>
+                <span class="status-pill tag-green" id="system-type-badge">Consistent (Unique Solution)</span>
+              </div>
+
+              <div class="ratios-grid">
+                <div class="ratio-card">
+                  <span>a₁ / a₂</span>
+                  <strong id="ratio-a">1/2</strong>
+                </div>
+                <div class="ratio-card">
+                  <span>b₁ / b₂</span>
+                  <strong id="ratio-b">-1/1</strong>
+                </div>
+                <div class="ratio-card">
+                  <span>c₁ / c₂</span>
+                  <strong id="ratio-c">2/1</strong>
+                </div>
+              </div>
+
+              <div class="solution-info" id="solution-details">
+                <strong>Intersection Point:</strong> (x, y) = (2, 2)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. QUICK 5-QUESTION QUIZ -->
+    <section>
+      <div class="section-title">
+        <h2>Quick 5-Question Challenge</h2>
+        <p>Test your ratio skills! Look at the two equations and pick the right match.</p>
+      </div>
+
+      <div class="quiz-card" id="quiz-box">
+        <div class="quiz-top">
+          <span id="quiz-progress">Question 1 of 5</span>
+          <span id="quiz-score">Score: 0 / 5</span>
+        </div>
+
+        <div class="quiz-equations" id="quiz-eqs">
+          2x + 3y - 8 = 0<br />
+          4x + 6y - 16 = 0
+        </div>
+
+        <div class="quiz-question-text" id="quiz-prompt">
+          What kind of lines do these two equations form?
+        </div>
+
+        <div class="options-list" id="quiz-options"></div>
+
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+
+        <div class="quiz-actions">
+          <button class="btn btn-primary" id="next-btn" style="display:none;" onclick="nextQuestion()">Next Question →</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Built for Class 10 Students • Ready for GitHub Pages
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
